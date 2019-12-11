@@ -12,13 +12,4 @@ public class BookshopApplication {
         SpringApplication.run(BookshopApplication.class, args);
     }
 
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**");
-            }
-        };
-    }
-
 }

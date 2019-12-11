@@ -4,6 +4,7 @@ import com.ravn.bookshop.model.Book;
 import com.ravn.bookshop.model.Comment;
 import com.ravn.bookshop.model.Review;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +18,7 @@ import java.util.List;
 public class GatewayController {
 
     @RequestMapping("/books")
+    @CrossOrigin
     public List<Book> getAll(){
         final List<Comment> comments1 = Arrays.asList(Comment.builder().author("me").id("1").text("great!").build(),
                 Comment.builder().author("you").id("2").text("horrible").build());
