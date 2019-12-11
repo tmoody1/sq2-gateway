@@ -2,8 +2,9 @@ package com.ravn.bookshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class BookshopApplication {
@@ -12,4 +13,14 @@ public class BookshopApplication {
         SpringApplication.run(BookshopApplication.class, args);
     }
 
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder.build();
+    }
+
+
+    @Bean
+    public ReviewClient getReviewClient(){
+        return new ReviewClient();
+    }
 }
