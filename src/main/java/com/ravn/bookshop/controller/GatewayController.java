@@ -7,10 +7,9 @@ import com.ravn.bookshop.model.Comment;
 import com.ravn.bookshop.model.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -24,7 +23,7 @@ public class GatewayController {
     @Autowired
     private BookClient bookClient;
 
-    @RequestMapping("/books")
+    @RequestMapping(value = "/books", produces = { MediaType.APPLICATION_JSON_VALUE})
     @CrossOrigin
     public List<Book> allBooks(){
 
@@ -37,13 +36,13 @@ public class GatewayController {
         return books;
     }
 
-    @RequestMapping("/books/{id}/reviews")
+    @RequestMapping(value = "/books/{id}/reviews", produces = { MediaType.APPLICATION_JSON_VALUE})
     public List<Review> reviewsForBook(@PathVariable String id) {
         return reviewClient.getReviews("123");
     }
 
 
-    @PostMapping("/review/{id}/comment")
+    @PostMapping(value = "/review/{id}/comment", produces = { MediaType.APPLICATION_JSON_VALUE}, consumes = { MediaType.APPLICATION_JSON_VALUE})
     public Comment commentForReview(@PathVariable String id, @RequestBody Comment comment) {
         return comment;
     }
