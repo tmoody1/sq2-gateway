@@ -40,7 +40,7 @@ public class GatewayController {
 
 
     @PostMapping("/review/{id}/comment")
-    public Comment commentForReview(@PathVariable String id, Comment comment) {
+    public Comment commentForReview(@PathVariable String id, @RequestBody Comment comment) {
         return comment;
     }
 
