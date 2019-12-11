@@ -37,17 +37,20 @@ public class GatewayController {
     }
 
     @GetMapping(value = "/books/{id}/reviews", produces = { MediaType.APPLICATION_JSON_VALUE})
+    @CrossOrigin
     public List<Review> reviewsForBook(@PathVariable String id) {
         return reviewClient.getReviews("123");
     }
 
 
     @PostMapping(value = "/review/{id}/comment", produces = { MediaType.APPLICATION_JSON_VALUE}, consumes = { MediaType.APPLICATION_JSON_VALUE})
+    @CrossOrigin
     public Comment commentForReview(@PathVariable String id, @RequestBody Comment comment) {
         return comment;
     }
 
     @PutMapping("/review/{id}/like")
+    @CrossOrigin
     public void likeForReview(@PathVariable String id) {
         reviewClient.like(id);
     }
