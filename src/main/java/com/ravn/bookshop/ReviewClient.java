@@ -25,4 +25,7 @@ public class ReviewClient {
             return Collections.emptyList();
         }
     }
+
+    public void like(String id) {
+    }
 }

@@ -44,5 +44,10 @@ public class GatewayController {
         return comment;
     }
 
+    @PutMapping("/review/{id}/like")
+    public void likeForReview(@PathVariable String id) {
+        reviewClient.like(id);
+    }
+
 
 }
