@@ -1,5 +1,6 @@
 package com.ravn.bookshop;
 
+import com.ravn.bookshop.model.Comment;
 import com.ravn.bookshop.model.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
@@ -28,5 +29,9 @@ public class ReviewClient {
 
     public void like(String id) {
         restTemplate.put("http://review:8080/reviews/"+id+"/like", null);
+    }
+
+    public Review addComment(String id, Comment comment) {
+        return restTemplate.postForObject("http://review:8080/reviews/"+id+"/comment", comment, Review.class);
     }
 }

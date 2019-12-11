@@ -45,8 +45,8 @@ public class GatewayController {
 
     @PostMapping(value = "/review/{id}/comment", produces = { MediaType.APPLICATION_JSON_VALUE}, consumes = { MediaType.APPLICATION_JSON_VALUE})
     @CrossOrigin
-    public Comment commentForReview(@PathVariable String id, @RequestBody Comment comment) {
-        return comment;
+    public Review commentForReview(@PathVariable String id, @RequestBody Comment comment) {
+        return reviewClient.addComment(id, comment);
     }
 
     @PutMapping("/review/{id}/like")
