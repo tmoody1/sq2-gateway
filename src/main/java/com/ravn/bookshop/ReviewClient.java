@@ -17,7 +17,7 @@ public class ReviewClient {
     public RestTemplate restTemplate;
 
     public List<Review> getReviews(String bookId){
-        final Review[] reviews = restTemplate.getForObject("http://review:8080/reviews/"+bookId, Review[].class);
+        final Review[] reviews = restTemplate.getForObject("http://review:8080/reviewsForIsbn/"+bookId, Review[].class);
         if (reviews != null) {
             return Arrays.asList(reviews);
         }
