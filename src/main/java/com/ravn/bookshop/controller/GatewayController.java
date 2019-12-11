@@ -23,7 +23,7 @@ public class GatewayController {
     @Autowired
     private BookClient bookClient;
 
-    @RequestMapping(value = "/books", produces = { MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/books", produces = { MediaType.APPLICATION_JSON_VALUE})
     @CrossOrigin
     public List<Book> allBooks(){
 
@@ -36,7 +36,7 @@ public class GatewayController {
         return books;
     }
 
-    @RequestMapping(value = "/books/{id}/reviews", produces = { MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/books/{id}/reviews", produces = { MediaType.APPLICATION_JSON_VALUE})
     public List<Review> reviewsForBook(@PathVariable String id) {
         return reviewClient.getReviews("123");
     }
