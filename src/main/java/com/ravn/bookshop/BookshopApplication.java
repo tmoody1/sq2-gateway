@@ -23,4 +23,9 @@ public class BookshopApplication {
     public ReviewClient getReviewClient(){
         return new ReviewClient();
     }
+
+    @Bean
+    public BookClient getBookClient(){
+        return new BookClient();
+    }
 }

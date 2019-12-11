@@ -5,7 +5,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-@Builder
 @Data
 public class Comment implements Serializable {
     private String id;

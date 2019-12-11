@@ -1,5 +1,6 @@
 package com.ravn.bookshop.controller;
 
+import com.ravn.bookshop.BookClient;
 import com.ravn.bookshop.ReviewClient;
 import com.ravn.bookshop.model.Book;
 import com.ravn.bookshop.model.Comment;
@@ -20,18 +21,21 @@ public class GatewayController {
     @Autowired
     private ReviewClient reviewClient;
 
+    @Autowired
+    private BookClient bookClient;
+
     @RequestMapping("/books")
     @CrossOrigin
     public List<Book> allBooks(){
-        final List<Comment> comments1 = Arrays.asList(Comment.builder().author("me").id("1").text("great!").build(),
-                Comment.builder().author("you").id("2").text("horrible").build());
-        final List<Review> reviews = Collections.singletonList(Review.builder().author("me").id("34").likes(99).text("best book").comments(comments1).build())  ;
 
-        return Arrays.asList(
-                Book.builder().title("title").author("author").publishDate("today").isbn("123").reviews(reviews).build(),
-                Book.builder().title("day").author("author").publishDate("2018-01-21").isbn("283").reviews(Collections.emptyList()).build());
+        List<Book> books = bookClient.getBooks();
+
+        for (Book book : books) {
+            book.setReviews(reviewClient.getReviews(book.getIsbn()));
+        }
+
+        return books;
     }
-
 
     @RequestMapping("/books/{id}/reviews")
     public List<Review> reviewsForBook(@PathVariable String id) {

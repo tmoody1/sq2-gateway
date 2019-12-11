@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-@Builder
 public class Book implements Serializable {
 private String title;
 private String author;

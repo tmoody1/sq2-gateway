@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-@Builder
 public class Review implements Serializable {
     private String id;
     private String author;
