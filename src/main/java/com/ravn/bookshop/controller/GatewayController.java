@@ -1,11 +1,14 @@
 package com.ravn.bookshop.controller;
 
-import com.ravn.bookshop.Book;
+import com.ravn.bookshop.model.Book;
+import com.ravn.bookshop.model.Comment;
+import com.ravn.bookshop.model.Review;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -15,8 +18,12 @@ public class GatewayController {
 
     @RequestMapping("/books")
     public List<Book> getAll(){
+        final List<Comment> comments1 = Arrays.asList(Comment.builder().author("me").id("1").text("great!").build(),
+                Comment.builder().author("you").id("2").text("horrible").build());
+        final List<Review> reviews = Collections.singletonList(Review.builder().author("me").id("34").likes(99).text("best book").comments(comments1).build())  ;
+
         return Arrays.asList(
-                new Book("title", "author", "today", "123"),
-                new Book("Day", "john", "yesterday", "987" ));
+                Book.builder().title("title").author("author").publishDate("today").isbn("123").reviews(reviews).build(),
+                Book.builder().title("day").author("author").publishDate("2018-01-21").isbn("283").reviews(Collections.emptyList()).build());
     }
 }
