@@ -27,6 +27,6 @@ public class ReviewClient {
     }
 
     public void like(String id) {
-        restTemplate.put("http://review:8080/"+id+"/like", null);
+        restTemplate.put("http://review:8080/reviews/"+id+"/like", null);
     }
 }
